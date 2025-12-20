@@ -3,62 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Personal Finance Tracker</title>
-
-  <!-- Google Font -->git rebase --continue
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  
-  <!-- Chart.js -->
+  <title>Prosper | Finance Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>💸 Personal Finance Tracker</h1>
-    <div class="balance-summary">
-      <h2>Balance: ₹<span id="balance">0</span></h2>
-      <div class="summary">
-        <p>Income: ₹<span id="income">0</span></p>
-        <p>Expense: ₹<span id="expense">0</span></p>
+
+  <div class="container">
+    <header>
+      <h1>FINANCE TRACKER</h1>
+      <button id="exportBtn" class="btn-secondary">⬇ Export CSV</button>
+    </header>
+
+    <div class="balance-card">
+      <div class="balance-item">
+        <h3>Total Balance</h3>
+        <h2 id="balance">₹0.00</h2>
+      </div>
+      <div class="income-expense-row">
+        <div class="money plus">
+          <p>Income</p>
+          <span id="income">₹0.00</span>
+        </div>
+        <div class="money minus">
+          <p>Expense</p>
+          <span id="expense">₹0.00</span>
+        </div>
       </div>
     </div>
-  </header>
 
-  <main>
-    <!-- Add Transaction Form -->
-    <section class="transaction-form">
-      <h3>Add New Transaction</h3>
-      <form id="transactionForm">
-        <input type="text" id="text" placeholder="Enter Description" required />
-        <input type="number" id="amount" placeholder="Enter Amount" required />
-        
-        <select id="type">
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
-        </select>
+    <div class="grid-layout">
+      
+      <div class="left-col">
+        <section class="glass-panel">
+          <h3>Add New Transaction</h3>
+          <form id="transactionForm">
+            <div class="form-control">
+              <label>Description</label>
+              <input type="text" id="text" placeholder="e.g. Food" required />
+            </div>
+            
+            <div class="form-row">
+              <div class="form-control">
+                <label>Amount</label>
+                <input type="number" id="amount" placeholder="0" required />
+              </div>
+              <div class="form-control">
+                <label>Type</label>
+                <select id="type">
+                  <option value="income">Income (+)</option>
+                  <option value="expense">Expense (-)</option>
+                </select>
+              </div>
+            </div>
 
-        <button type="submit">Add Transaction</button>
-      </form>
-    </section>
+            <div class="form-row">
+              <div class="form-control">
+                <label>Category</label>
+                <select id="category" required>
+                  <option value="Salary">💰 Salary</option>
+                  <option value="Freelance">💻 Freelance</option>
+                  <option value="Food">🍔 Food</option>
+                  <option value="Travel">✈️ Travel</option>
+                  <option value="Bills">💡 Bills</option>
+                  <option value="Shopping">🛍️ Shopping</option>
+                </select>
+              </div>
+              <div class="form-control">
+                <label>Date</label>
+                <input type="date" id="date" required />
+              </div>
+            </div>
 
-    <!-- Transaction List -->
-    <section class="transaction-list">
-      <h3>Transaction History</h3>
-      <ul id="transactions"></ul>
-    </section>
+            <button type="submit" class="btn-primary">Add Transaction</button>
+          </form>
+        </section>
 
-    <!-- Chart Section -->
-    <section class="chart-section">
-      <h3>Spending Overview</h3>
-      <canvas id="financeChart"></canvas>
-    </section>
-  </main>
+        <section class="glass-panel chart-container">
+          <h3>Expense Breakdown</h3>
+          <canvas id="financeChart"></canvas>
+        </section>
+      </div>
 
-  <footer>
-    <p>Made with ❤️ by Deeksha</p>
-  </footer>
+      <div class="right-col">
+        <section class="glass-panel history-panel">
+          <h3>History</h3>
+          <ul id="transactions" class="list">
+            </ul>
+        </section>
+      </div>
+
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
